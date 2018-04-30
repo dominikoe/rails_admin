@@ -277,6 +277,7 @@ describe 'RailsAdmin CanCanCan Authorization', type: :request do
 
   describe 'with exception role' do
     it 'GET /admin/player/bulk_delete should render records which are authorized to' do
+      pending('need to upgrade to cancancan 2.x') if Rails::VERSION::STRING >= '5.2' && CI_ORM == :active_record
       @user.update_attributes(roles: [:admin, :test_exception])
       active_player = FactoryGirl.create :player, retired: false
       retired_player = FactoryGirl.create :player, retired: true
@@ -288,6 +289,7 @@ describe 'RailsAdmin CanCanCan Authorization', type: :request do
     end
 
     it 'POST /admin/player/bulk_destroy should destroy records which are authorized to' do
+      pending('need to upgrade to cancancan 2.x') if Rails::VERSION::STRING >= '5.2' && CI_ORM == :active_record
       @user.update_attributes(roles: [:admin, :test_exception])
       active_player = FactoryGirl.create :player, retired: false
       retired_player = FactoryGirl.create :player, retired: true

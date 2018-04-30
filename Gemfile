@@ -9,7 +9,7 @@ group :active_record do
   gem 'paper_trail'
 
   platforms :ruby, :mswin, :mingw do
-    gem 'mysql2', '~> 0.3.14'
+    gem 'mysql2', '>= 0.3.14'
     gem 'sqlite3', '>= 1.3'
   end
 end

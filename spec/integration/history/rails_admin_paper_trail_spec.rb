@@ -51,6 +51,7 @@ describe 'RailsAdmin PaperTrail history', active_record: true do
     end
 
     it 'creates versions' do
+      pending 'Requires Ruby >= 2.3' if Rails::VERSION::STRING >= '5.2' && RUBY_VERSION =~ /^2\.2/
       expect(PaperTrail::Version.count).to eq(30)
     end
 
@@ -60,12 +61,14 @@ describe 'RailsAdmin PaperTrail history', active_record: true do
       end
 
       it 'fetches on page of history' do
+        pending 'Requires Ruby >= 2.3' if Rails::VERSION::STRING >= '5.2' && RUBY_VERSION =~ /^2\.2/
         versions = @adapter.listing_for_model @model, nil, false, false, false, nil, 20
         expect(versions.total_count).to eq(30)
         expect(versions.count).to eq(20)
       end
 
       it 'respects RailsAdmin::Config.default_items_per_page' do
+        pending 'Requires Ruby >= 2.3' if Rails::VERSION::STRING >= '5.2' && RUBY_VERSION =~ /^2\.2/
         RailsAdmin.config.default_items_per_page = 15
         versions = @adapter.listing_for_model @model, nil, false, false, false, nil
         expect(versions.total_count).to eq(30)
@@ -73,11 +76,13 @@ describe 'RailsAdmin PaperTrail history', active_record: true do
       end
 
       it 'sets correct next page' do
+        pending 'Requires Ruby >= 2.3' if Rails::VERSION::STRING >= '5.2' && RUBY_VERSION =~ /^2\.2/
         versions = @adapter.listing_for_model @model, nil, false, false, false, 2, 10
         expect(versions.next_page).to eq(3)
       end
 
       it 'can fetch all history' do
+        pending 'Requires Ruby >= 2.3' if Rails::VERSION::STRING >= '5.2' && RUBY_VERSION =~ /^2\.2/
         versions = @adapter.listing_for_model @model, nil, false, false, true, nil, 20
         expect(versions.total_count).to eq(30)
         expect(versions.count).to eq(30)
@@ -90,19 +95,23 @@ describe 'RailsAdmin PaperTrail history', active_record: true do
         end
 
         it '#username returns user email' do
+          pending 'Requires Ruby >= 2.3' if Rails::VERSION::STRING >= '5.2' && RUBY_VERSION =~ /^2\.2/
           expect(@version.username).to eq(@user.email)
         end
 
         it '#message returns event' do
+          pending 'Requires Ruby >= 2.3' if Rails::VERSION::STRING >= '5.2' && RUBY_VERSION =~ /^2\.2/
           expect(@version.message).to eq('update')
         end
 
         describe 'changed item attributes' do
           it '#item returns item.id' do
+            pending 'Requires Ruby >= 2.3' if Rails::VERSION::STRING >= '5.2' && RUBY_VERSION =~ /^2\.2/
             expect(@version.item).to eq(@paper_trail_test.id)
           end
 
           it '#table returns item class name' do
+            pending 'Requires Ruby >= 2.3' if Rails::VERSION::STRING >= '5.2' && RUBY_VERSION =~ /^2\.2/
             expect(@version.table.to_s).to eq('PaperTrailTest')
           end
         end
