@@ -18,4 +18,4 @@
         - else
           - label = Object.const_defined?(t.table) ? t.table.constantize.model_name.human : t.table
           %td= "#{label} ##{t.item}"
-        %td= t.message
+        %td= t.message.force_encoding("UTF-8")
